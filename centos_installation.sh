@@ -14,116 +14,115 @@
 set -o xtrace  # Print every command out to stdout.
 set -o errexit # Exit immediately if a command exits with non-zero status.
 
-#
-# Initialize directories
-#
-mkdir ~/github
-mkdir ~/github/thorgeir
-mkdir ~/Downloads
-mkdir ~/notes
-mkdir ~/Pictures
-mkdir ~/Pictures/wallpapers
-mkdir ~/Pictures/display_manager
+function main() {
+    # Initialize directories
+    mkdir -p ~/git/hub/thorgeir
+    mkdir ~/Downloads
+    mkdir ~/notes
+    mkdir ~/Pictures
+    mkdir ~/Pictures/wallpapers
+    mkdir ~/Pictures/display_manager
 
-sudo chown -R thorgeir:thorgeir ~/github/
+    sudo chown -R thorgeir:thorgeir ~/git/hub/
 
-#
-# Clone repositories
-#
-git clone https://github.com/thorgeir93/dotfiles.git ~/github/thorgeir/
-git clone https://github.com/thorgeir93/i3wm-config-thorgeir ~/github/thorgeir/
+    # Clone repositories
+    #
+    git clone https://github.com/thorgeir93/dotfiles.git ~/git/hub/thorgeir/
+    git clone https://github.com/thorgeir93/i3wm-config-thorgeir ~/git/hub/thorgeir/
+    git clone git@github.com:thorgeir93/wallpapers.git ~/git/hub/thorgeir/
 
-# Link config files
-#
-ln --symbolic ~/github/thorgeir/dotfiles/.bashrc        ~/.bashrc
-ln --symbolic ~/github/thorgeir/dotfiles/.vimrc         ~/.vimrc
-ln --symbolic ~/github/thorgeir/dotfiles/.Xdefaults     ~/.Xdefaults
-ln --symbolic ~/github/thorgeir/dotfiles/.aliases       ~/.aliases
-ln --symbolic ~/github/thorgeir/dotfiles/.speedswapper  ~/.speedswapper
+    # Link config files
+    #
+    ln --symbolic ~/git/hub/thorgeir/dotfiles/.bashrc        ~/.bashrc
+    ln --symbolic ~/git/hub/thorgeir/dotfiles/.vimrc         ~/.vimrc
+    ln --symbolic ~/git/hub/thorgeir/dotfiles/.Xdefaults     ~/.Xdefaults
+    ln --symbolic ~/git/hub/thorgeir/dotfiles/.aliases       ~/.aliases
+    ln --symbolic ~/git/hub/thorgeir/dotfiles/.speedswapper  ~/.speedswapper
 
-ln --symbolic ~/github/thorgeir/i3wm-config-thorgeir ~/.config/i3
+    ln --symbolic ~/git/hub/thorgeir/i3wm-config-thorgeir ~/.config/i3
 
-#
-# YUM Install
-#
-sudo yum --quiet -y install gcc
-sudo yum --quiet -y install vim
-sudo yum --quiet -y install rxvt-unicode
-sudo yum --quiet -y install htop
-sudo yum --quiet -y install openvpn
-sudo yum --quiet -y install tigervnc
-sudo yum --quiet -y install net-tools
-sudo yum --quiet -y install xf86vmode
-sudo yum --quiet -y install python
-sudo yum --quiet -y install python34
-sudo yum --quiet -y install python34-pip
-sudo yum --quiet -y install python-devel
-sudo yum --quiet -y install python34-devel
-sudo yum --quiet -y install python-psutil
-sudo yum --quiet -y install py3status
+    #
+    # YUM Install
+    #
+    sudo yum --quiet -y install gcc
+    sudo yum --quiet -y install vim
+    sudo yum --quiet -y install rxvt-unicode
+    sudo yum --quiet -y install htop
+    sudo yum --quiet -y install openvpn
+    sudo yum --quiet -y install tigervnc
+    sudo yum --quiet -y install net-tools
+    sudo yum --quiet -y install xf86vmode
+    #sudo yum --quiet -y install python
+    #sudo yum --quiet -y install python34
+    #sudo yum --quiet -y install python34-pip
+    #sudo yum --quiet -y install python-devel
+    #sudo yum --quiet -y install python34-devel
+    #sudo yum --quiet -y install python-psutil
+    #sudo yum --quiet -y install py3status
 
-sudo yum -y install libinput
-sudo yum -y install libinput-devel
-sudo yum -y install xorg-x11-drv-libinput
-sudo yum -y install xorg-x11-drv-libinput-devel
+    #sudo yum -y install libinput
+    #sudo yum -y install libinput-devel
+    #sudo yum -y install xorg-x11-drv-libinput
+    #sudo yum -y install xorg-x11-drv-libinput-devel
 
-# Install missing -devel packages.
-# (to install xcalib)
-sudo yum -y install libXxf86vm-devel
-sudo yum -y install libXrandr-devel
+    # Install missing -devel packages.
+    # (to install xcalib)
+    #sudo yum -y install libXxf86vm-devel
+    #sudo yum -y install libXrandr-devel
 
-#
-# Install from source
-#
-# TODO xcalib
+    #
+    # Install from source
+    #
+    # TODO xcalib
 
-#
-# PIP install
-#
-sudo pip3 install i3pystatus
-sudo pip3 install psutil
-sudo pip3 install netifaces
-sudo pip3 install colour 
-sudo pip3 install ipython
+    #
+    # PIP install
+    #
+    #sudo pip3 install i3pystatus
+    #sudo pip3 install psutil
+    #sudo pip3 install netifaces
+    #sudo pip3 install colour 
+    #sudo pip3 install ipython
 
-sudo pip2 install ipython
+    #sudo pip2 install ipython
 
-#
-# Install xcalib
-# 
-# This tool will make it avialable to 
-# invert the colors in the scrren.
+    #
+    # Install xcalib
+    # 
+    # This tool will make it avialable to 
+    # invert the colors in the scrren.
 
-# Get the source code and install it.
-cd ~/github/
-git clone https://github.com/OpenICC/xcalib.git
-cd ./xcalib/
-make xcalib
+    # Get the source code and install it.
+    cd ~/git/hub/
+    git clone https://github.com/OpenICC/xcalib.git
+    cd ./xcalib/
+    make xcalib
 
 
-# May have to execute these statements.
-#```
-#sudo rm /bin/xalib
-#sudo ln -s /home/thorgeir/github/xcalib/xcalib /bin/xcalib
-#sudo chmod 755 /bin/xcalib
-#```
+    # May have to execute these statements.
+    #```
+    #sudo rm /bin/xalib
+    #sudo ln -s /home/thorgeir/git/hub/xcalib/xcalib /bin/xcalib
+    #sudo chmod 755 /bin/xcalib
+    #```
 
-# I3LOCK
-Sudo yum install -y i3lock
-# To get the `image` command line tool.
-sudo yum install -y ImageMagick 
+    # I3LOCK
+    Sudo yum install -y i3lock
+    # To get the `image` command line tool.
+    sudo yum install -y ImageMagick 
 
 
-#
-# SCRIPTS THAT MIGHT BRAKES
-# -------------------------
-#
-# Modify lightdm (display manager)
-#
-# Get the Cyren logo.
-cd ~/Pictures/display_manager/
-wget http://www.l8solutions.co.uk/media/wysiwyg/CYREN-logo-1C.png
-mv CYREN-logo-1C.png cyren.png
+    #
+    # SCRIPTS THAT MIGHT BRAKES
+    # -------------------------
+    #
+    # Modify lightdm (display manager)
+    #
+    # Get the Cyren logo.
+    #cd ~/Pictures/display_manager/
+    #wget http://www.l8solutions.co.uk/media/wysiwyg/CYREN-logo-1C.png
+    #mv CYREN-logo-1C.png cyren.png
+}
 
 # 
 # Setup ethernet network, follow:
@@ -148,18 +147,22 @@ function install_st_terminal () {
     #requirements
     sudo yum install libXft-devel
 
-    pushd ~/Downloads
-    wget https://dl.suckless.org/st/st-0.7.tar.gz
-    tar -xvf st-0.7.tar.gz
-    cd st-0.7
+    pushd ~/git/hub
+    mkdir I3pp4rd
+    cd I3pp4rd
+
+    git clone https://github.com/l3pp4rd/st.git
+    cd st
 
     # Edit config.mk to mactch my local setup (centos). 
     sed 's|^X11INC.*|X11INC = /usr/include/X11|g' ./config.mk
     sed 's|^X11LIB.*|X11LIB = /usr/lib64/X11|g' ./config.mk
 
-    make clean install
+    sudo make clean install
     popd
 }
+
+install_st_terminal
 
 
 
